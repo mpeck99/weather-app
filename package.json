@@ -21,6 +21,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
     "execa": "latest",
+    "vue-inline-svg": "^2.0.0",
     "vue-loader-v16": "npm:vue-loader@^16.1.2"
   },
   "eslintConfig": {
