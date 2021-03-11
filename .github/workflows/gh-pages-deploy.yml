@@ -22,6 +22,6 @@
             git config user.name "mpeck99" && git config user.email "mlpeck@fullsail.edu"
             npm run deploy
             
-          - name: Set CNAME
-              env:
-                PAGES_CNAME: weather.morganpeck.com
+        - name: Set CNAME
+          env:
+            PAGES_CNAME: weather.morganpeck.com
