@@ -11,7 +11,7 @@ const fs = require("fs");
     await execa("git", ["--work-tree", folderName, "add", "--all"]);
     await execa("git", ["--work-tree", folderName, "commit", "-m", "gh-pages"]);
     console.log("Pushing to gh-pages...");
-    fs.writeFileSync('/dist/CNAME', 'weather.morganpeck.com');
+    fs.writeFileSync('dist/CNAME', 'weather.morganpeck.com');
     await execa("git", ["push", "origin", "HEAD:gh-pages", "--force"]);
     await execa("rm", ["-r", folderName]);
     await execa("git", ["checkout", "-f", "master"]);
