@@ -20,4 +20,4 @@
         - name: Run deploy script
           run: |
             git config user.name "mpeck99" && git config user.email "mlpeck@fullsail.edu"
-            npm run scripts/gh-pages-deploy
+            npm run scripts/gh-pages-deploy.js
