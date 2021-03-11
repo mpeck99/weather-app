@@ -21,5 +21,3 @@
           run: |
             git config user.name "mpeck99" && git config user.email "mlpeck@fullsail.edu"
             npm run deploy
-        - name: Set CNAME
-          run: npm run add-domain
