@@ -1,8 +1,11 @@
 <template>
-    <label for="states">Select a state</label>
-    <select name="states" id="states">
-        <option v-for="state in states" :value="state.value" :key="state.value">{{state.title}}</option>
-    </select>
+    <div class="form-group">
+        <label for="states">Select a state</label>
+        <select name="states" id="states">
+            <option v-for="state in states" :value="state.value" :key="state.value" @change="onChange($e)">{{state.title}}</option>
+        </select>
+    </div>
+
 </template>
 
 <script>
@@ -247,8 +250,15 @@ export default {
                 value: "WY"
             }
 
-        ]
-    }}
+        ], 
+        selectedState: ''
+    }},
+    methods: {
+        onChange(e) {
+            console.log(e.target.value);
+            // this.selectedState = e.target.value;
+        }
+    }
 }
 </script>
 
