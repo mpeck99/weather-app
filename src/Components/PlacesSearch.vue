@@ -5,7 +5,7 @@
     <input type="text" name="location" id="location" v-model="city" />
   </div>
   <state-dropdown @state="stateValue" />
-  <button @click="displayData()">Search</button>
+  <button @click="fetchData()">Search</button>
 </template>
 <script>
 import stateDropdown from '@/Components/StatesDropdown';
@@ -28,7 +28,7 @@ export default {
     stateValue(value) {
       this.selectedState = value;
     },
-    displayData() {
+    fetchData() {
       console.log(this.city + ',' + this.selectedState);
     }
   }
