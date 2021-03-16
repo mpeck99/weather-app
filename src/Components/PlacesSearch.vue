@@ -2,7 +2,7 @@
   <h1>Weather Forecast</h1>
   <div class="form-group">
     <label for="location">Search for location</label>
-    <input type="text" name="location" id="location" />
+    <input type="text" name="location" id="location" v-model="city" />
   </div>
   <state-dropdown @state="stateValue" />
   <button @click="displayData()">Search</button>
@@ -20,7 +20,8 @@ export default {
       url: 'https://api.openweathermap.org/data/2.5/',
       weatherData: [],
       error: null,
-      selectedState: ''
+      selectedState: '',
+      city: ''
     };
   },
   methods: {
@@ -28,7 +29,7 @@ export default {
       this.selectedState = value;
     },
     displayData() {
-      console.log(this.selectedState);
+      console.log(this.city + ',' + this.selectedState);
     }
   }
 };
