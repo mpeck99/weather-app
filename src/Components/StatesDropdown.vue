@@ -1,13 +1,13 @@
 <template>
   <div class="form-group">
     <label for="states">Select a state</label>
-    <select name="states" id="states">
-      <option
-        v-for="state in states"
-        :value="state.value"
-        :key="state.value"
-        @change="onChange($e)"
-      >
+    <select
+      name="states"
+      id="states"
+      v-model="selectedState"
+      @change="this.stateSelect"
+    >
+      <option v-for="state in states" :value="state.value" :key="state.value">
         {{ state.title }}
       </option>
     </select>
@@ -255,14 +255,12 @@ export default {
           title: 'Wyoming',
           value: 'WY'
         }
-      ],
-      selectedState: ''
+      ]
     };
   },
   methods: {
-    onChange(e) {
-      console.log(e.target.value);
-      // this.selectedState = e.target.value;
+    stateSelect: function () {
+      this.$emit('state', this.selectedState);
     }
   }
 };
