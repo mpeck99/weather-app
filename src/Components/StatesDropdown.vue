@@ -2,6 +2,7 @@
   <div class="form-group">
     <label for="states">Select a state</label>
     <select
+      class="form-control"
       name="states"
       id="states"
       v-model="selectedState"
