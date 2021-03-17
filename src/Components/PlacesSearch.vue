@@ -24,7 +24,8 @@ export default {
     return {
       apiKey: '4de4a8d80078d333a4a72f1c11d87820',
       url: 'https://api.openweathermap.org/data/2.5/',
-      weatherData: [],
+      currentWeather: [],
+      weekForecast: [],
       error: null,
       selectedState: '',
       city: ''
@@ -36,6 +37,45 @@ export default {
     },
     fetchData() {
       console.log(this.city + ',' + this.selectedState);
+      this.getCurrentWeather();
+      this.getForecast();
+    },
+    getCurrentWeather() {
+      this.error = null;
+
+      // Current weather data fetch
+      if (
+        (!this.city == '' && !this.selectedState == '') ||
+        !this.city == null
+      ) {
+        fetch(
+          `${this.url}weather?q=${this.city},${this.selectedState},US&appid=${this.apiKey}&units=imperial`
+        ).then((res) => {
+          if (!res.ok) {
+            this.error = res.status;
+          } else {
+            this.currentWeather = res.json();
+            console.log(this.currentWeather);
+          }
+        });
+      }
+    },
+    getForecast() {
+      // Forecast fetch
+      if (
+        (!this.city == '' && !this.selectedState == '') ||
+        !this.city == null
+      ) {
+        fetch(
+          `${this.url}forecast?q=${this.city},${this.selectedState},US&appid=${this.apiKey}&units=imperial`
+        ).then((res) => {
+          if (!res.ok) {
+            this.error = res.status;
+          } else {
+            this.weekForecast = res.json();
+          }
+        });
+      }
     }
   }
 };
