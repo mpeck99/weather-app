@@ -26,8 +26,8 @@ export default {
       url: 'https://api.openweathermap.org/data/2.5/',
       currentWeather: [],
       weekForecast: [],
+      coordinates: [],
       error: null,
-      selectedState: '',
       city: ''
     };
   },
@@ -36,45 +36,52 @@ export default {
       this.selectedState = value;
     },
     fetchData() {
-      console.log(this.city + ',' + this.selectedState);
-      this.getCurrentWeather();
-      this.getForecast();
+      this.getCoordinates(this.getWeather);
     },
-    getCurrentWeather() {
+    getCoordinates(callback) {
       this.error = null;
 
-      // Current weather data fetch
+      // Getting the coordinates
       if (
         (!this.city == '' && !this.selectedState == '') ||
         !this.city == null
       ) {
         fetch(
           `${this.url}weather?q=${this.city},${this.selectedState},US&appid=${this.apiKey}&units=imperial`
-        ).then((res) => {
-          if (!res.ok) {
-            this.error = res.status;
-          } else {
-            this.currentWeather = res.json();
-            console.log(this.currentWeather);
-          }
-        });
+        )
+          .then((res) => {
+            if (!res.ok) {
+              this.error = res.status;
+            } else {
+              return res.json();
+            }
+          })
+          .then((data) => {
+            this.coordinates = data.coord;
+            callback();
+          });
       }
     },
-    getForecast() {
-      // Forecast fetch
+    getWeather() {
+      // Getting the weather
       if (
         (!this.city == '' && !this.selectedState == '') ||
         !this.city == null
       ) {
         fetch(
-          `${this.url}forecast?q=${this.city},${this.selectedState},US&appid=${this.apiKey}&units=imperial`
-        ).then((res) => {
-          if (!res.ok) {
-            this.error = res.status;
-          } else {
-            this.weekForecast = res.json();
-          }
-        });
+          `${this.url}onecall?lat=${this.coordinates.lat}&lon=${this.coordinates.lon}&appid=${this.apiKey}&exclude=hourly,minutely`
+        )
+          .then((data) => {
+            if (!data.ok) {
+              this.error = data.status;
+            } else {
+              return data.json();
+            }
+          })
+          .then((data) => {
+            this.weekForecast = data.daily;
+            this.currentWeather = data.current;
+          });
       }
     }
   }
