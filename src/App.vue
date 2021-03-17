@@ -15,6 +15,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import './assets/styles/styles.scss';
+
 .form-group {
   display: grid;
   grid-template-rows: 2rem 1fr;
