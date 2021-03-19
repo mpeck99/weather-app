@@ -68,7 +68,7 @@ export default {
         !this.city == null
       ) {
         fetch(
-          `${this.url}onecall?lat=${this.coordinates.lat}&lon=${this.coordinates.lon}&appid=${this.apiKey}&exclude=hourly,minutely`
+          `${this.url}onecall?lat=${this.coordinates.lat}&lon=${this.coordinates.lon}&appid=${this.apiKey}&exclude=hourly,minutely&units=imperial`
         )
           .then((data) => {
             if (!data.ok) {
