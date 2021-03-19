@@ -1,5 +1,4 @@
 <template>
-  <h1>Weather Forecast</h1>
   <div class="form-group">
     <label for="location">Search for location</label>
     <input
@@ -81,6 +80,8 @@ export default {
           .then((data) => {
             this.weekForecast = data.daily;
             this.currentWeather = data.current;
+            this.location = this.city + ',' + this.selectedState;
+            this.$emit('data', this.currentWeather);
           });
       }
     }
