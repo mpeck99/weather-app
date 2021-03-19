@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      data: null
+      data: []
     };
   },
   mounted() {

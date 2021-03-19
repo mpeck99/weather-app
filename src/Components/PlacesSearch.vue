@@ -80,9 +80,9 @@ export default {
           .then((data) => {
             this.weekForecast = data.daily;
             this.currentWeather = data.current;
-            this.location = this.city + ',' + this.selectedState;
+            this.location = this.city + ', ' + this.selectedState;
             this.$emit('data', {
-              data: this.currentWeather,
+              current: this.currentWeather,
               location: this.location
             });
           });

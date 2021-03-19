@@ -1,6 +1,7 @@
 <template>
+  <h2>{{ this.data.location }}</h2>
   <div class="card">
-    <p @change="currentWeather()">{{ this.data }}</p>
+    <p>{{ this.data.current }}</p>
   </div>
 </template>
 
@@ -8,19 +9,12 @@
 export default {
   props: {
     data: Object
-  },
-  data() {
-    return {
-      currentWeather: []
-    };
-  },
-
-  watch: {
-    currentWeather() {
-      console.log(this.data);
-    }
   }
 };
 </script>
 
-<style></style>
+<style lang="scss">
+h2 {
+  text-transform: capitalize;
+}
+</style>
