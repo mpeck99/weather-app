@@ -81,7 +81,10 @@ export default {
             this.weekForecast = data.daily;
             this.currentWeather = data.current;
             this.location = this.city + ',' + this.selectedState;
-            this.$emit('data', this.currentWeather);
+            this.$emit('data', {
+              data: this.currentWeather,
+              location: this.location
+            });
           });
       }
     }
