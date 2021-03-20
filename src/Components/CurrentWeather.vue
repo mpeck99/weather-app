@@ -6,7 +6,7 @@
       <p>{{ new Date().toLocaleDateString() }}</p>
     </div>
     <div class="body">
-      <!-- <p>{{ Math.round(this.data.current.temp) }}</p> -->
+      <p @change="dataChange()">{{ this.currentTemp }}</p>
       <p>{{ this.currentWeather }}</p>
     </div>
   </div>
@@ -23,7 +23,8 @@ export default {
       date: new Date().toLocaleDateString(),
       // temp: this.data.current.temp,
       location: this.data.location,
-      currentWeather: this.data.current
+      currentWeather: this.data.current,
+      currentTemp: ''
     };
   }
 };
