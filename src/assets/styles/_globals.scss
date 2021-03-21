@@ -1,6 +1,9 @@
 body,
 html {
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
+
+  height: 100%;
 }
 h1,
 h2,
@@ -10,3 +13,21 @@ h5,
 h6 {
   font-family: 'Oswald', sans-serif;
 }
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+
+section {
+  padding: 2rem;
+}
+
+$pink: #dd2d4a;
+$orange: #ec7d10;
+$green: #04f06a;
+$yellow: #ffbc0a;
+$purple: #c200fb;
+$black: #07070a;
+$white: #fff;
