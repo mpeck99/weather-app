@@ -8,9 +8,8 @@
     </div>
     <div class="body">
       <img :src="this.icon" :alt="this.description" />
-      <p>{{ this.description }}</p>
       <p>{{ this.temp }}</p>
-      <p>{{ this.currentWeather }}</p>
+      <p>{{ this.description }}</p>
     </div>
     <div class="footer">
       <p>{{ this.sunrise }}</p>
@@ -59,8 +58,8 @@ export default {
           this.description = weather.current.weather[0].description;
 
           this.time = this.formatTime(weather.current.dt);
-          this.sunrise = this.formatTime(weather.current.sunrise);
-          this.sunset = this.formatTime(weather.current.sunset);
+          this.sunrise = 'Sunrise: ' + this.formatTime(weather.current.sunrise);
+          this.sunset = 'Sunset: ' + this.formatTime(weather.current.sunset);
           this.feelsLike = Math.round(weather.current.feels_like);
         }
       }
