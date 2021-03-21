@@ -1,6 +1,6 @@
 <template>
   <div class="form-group">
-    <label for="states">Select a state</label>
+    <label for="states">State</label>
     <select
       class="form-control"
       name="states"
