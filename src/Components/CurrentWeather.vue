@@ -1,4 +1,5 @@
 <template>
+  <section aria-label="Weather data">
   <h2>{{ this.location }}</h2>
   <div class="card">
     <div class="card-header">
@@ -9,6 +10,7 @@
     <div class="card-body">
       <img :src="this.icon" :alt="this.description" />
       <p class="temp">{{ this.temp }}</p>
+        <p>{{ this.feelsLike }}</p>
       <p>{{ this.description }}</p>
     </div>
     <div class="card-footer">
@@ -16,6 +18,7 @@
       <p>{{ this.sunset }}</p>
     </div>
   </div>
+  </section>
 </template>
 
 <script>
