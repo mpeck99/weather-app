@@ -12,6 +12,10 @@
       <p>{{ this.temp }}</p>
       <p>{{ this.currentWeather }}</p>
     </div>
+    <div class="footer">
+      <p>{{ this.sunrise }}</p>
+      <p>{{ this.sunset }}</p>
+    </div>
   </div>
 </template>
 
@@ -29,7 +33,10 @@ export default {
       temp: '',
       icon: '',
       description: '',
-      time: ''
+      time: '',
+      feelsLike: '',
+      sunrise: '',
+      sunset: ''
     };
   },
   watch: {
@@ -50,17 +57,27 @@ export default {
             weather.current.weather[0].icon +
             '.png';
           this.description = weather.current.weather[0].description;
-          const timeOptions = {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true
-          };
-          const formatTime = new Date(weather.current.dt)
-            .toLocaleTimeString(timeOptions)
-            .replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, '$1$3');
-          this.time = formatTime;
+
+          this.time = this.formatTime(weather.current.dt);
+          this.sunrise = this.formatTime(weather.current.sunrise);
+          this.sunset = this.formatTime(weather.current.sunset);
+          this.feelsLike = Math.round(weather.current.feels_like);
         }
       }
+    }
+  },
+  methods: {
+    formatTime(time) {
+      const timeOptions = {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+      };
+      const newTime = new Date(time * 1000)
+        .toLocaleTimeString(timeOptions)
+        .replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, '$1$3');
+
+      return newTime;
     }
   }
 };
