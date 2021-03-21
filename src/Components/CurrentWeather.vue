@@ -2,11 +2,11 @@
   <h2>{{ this.location }}</h2>
   <div class="card">
     <div class="header">
-      <p>{{ new Date().toLocaleDateString('en-us', { weekday: 'long' }) }}</p>
-      <p>{{ new Date().toLocaleDateString() }}</p>
+      <p>{{ this.day }}</p>
+      <p>{{ this.date }}</p>
     </div>
     <div class="body">
-      <p @change="dataChange()">{{ this.currentTemp }}</p>
+      <p>{{ this.temp }}</p>
       <p>{{ this.currentWeather }}</p>
     </div>
   </div>
@@ -15,17 +15,35 @@
 <script>
 export default {
   props: {
-    data: Object
+    data: {}
   },
   data() {
     return {
-      day: new Date().toLocaleDateString('en-us', { weekday: 'long' }),
-      date: new Date().toLocaleDateString(),
-      // temp: this.data.current.temp,
-      location: this.data.location,
+      day: ' ',
+      date: ' ',
+      location: '',
       currentWeather: this.data.current,
-      currentTemp: ''
+      temp: ' '
     };
+  },
+  // mounted() {
+  //   this.data += '';
+  // },
+  watch: {
+    data: {
+      immediate: true,
+      deep: true,
+      handler(weather) {
+        if (weather.current != undefined) {
+          this.temp = Math.round(weather.current.temp);
+          this.day = new Date().toLocaleDateString('en-us', {
+            weekday: 'long'
+          });
+          this.location = weather.location;
+          this.date = new Date().toLocaleDateString();
+        }
+      }
+    }
   }
 };
 </script>
