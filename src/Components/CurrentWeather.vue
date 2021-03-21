@@ -1,17 +1,17 @@
 <template>
   <h2>{{ this.location }}</h2>
   <div class="card">
-    <div class="header">
+    <div class="card-header">
       <p>{{ this.day }}</p>
       <p>{{ this.date }}</p>
       <p>{{ this.time }}</p>
     </div>
-    <div class="body">
+    <div class="card-body">
       <img :src="this.icon" :alt="this.description" />
-      <p>{{ this.temp }}</p>
+      <p class="temp">{{ this.temp }}</p>
       <p>{{ this.description }}</p>
     </div>
-    <div class="footer">
+    <div class="card-footer">
       <p>{{ this.sunrise }}</p>
       <p>{{ this.sunset }}</p>
     </div>
@@ -86,5 +86,27 @@ export default {
 h2,
 p {
   text-transform: capitalize;
+}
+
+.card {
+  max-width: 20rem;
+
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto auto;
+
+  .card-header {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .card-body {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+  .card-footer {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
 }
 </style>
