@@ -1,23 +1,23 @@
 <template>
   <section aria-label="Weather data">
-  <h2>{{ this.location }}</h2>
-  <div class="card">
-    <div class="card-header">
-      <p>{{ this.day }}</p>
-      <p>{{ this.date }}</p>
-      <p>{{ this.time }}</p>
-    </div>
-    <div class="card-body">
-      <img :src="this.icon" :alt="this.description" />
-      <p class="temp">{{ this.temp }}</p>
+    <h2>{{ this.location }}</h2>
+    <div class="card">
+      <div class="card-header">
+        <p>{{ this.day }}</p>
+        <p>{{ this.date }}</p>
+        <p>{{ this.time }}</p>
+      </div>
+      <div class="card-body">
+        <img :src="this.icon" :alt="this.description" />
+        <p class="temp">{{ this.temp }}</p>
         <p>{{ this.feelsLike }}</p>
-      <p>{{ this.description }}</p>
+        <p>{{ this.description }}</p>
+      </div>
+      <div class="card-footer">
+        <p>{{ this.sunrise }}</p>
+        <p>{{ this.sunset }}</p>
+      </div>
     </div>
-    <div class="card-footer">
-      <p>{{ this.sunrise }}</p>
-      <p>{{ this.sunset }}</p>
-    </div>
-  </div>
   </section>
 </template>
 
@@ -63,7 +63,8 @@ export default {
           this.time = this.formatTime(weather.current.dt);
           this.sunrise = 'Sunrise: ' + this.formatTime(weather.current.sunrise);
           this.sunset = 'Sunset: ' + this.formatTime(weather.current.sunset);
-          this.feelsLike = Math.round(weather.current.feels_like);
+          this.feelsLike =
+            Math.round(weather.current.feels_like) + String.fromCharCode(176);
         }
       }
     }
