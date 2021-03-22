@@ -3,7 +3,7 @@ html {
   height: 100vh;
 
   display: grid;
-  grid-template-rows: 1fr 3rem;
+  grid-template-rows: 1fr auto;
   grid-template-columns: 100%;
 
   margin: 0;
@@ -39,11 +39,3 @@ h2 {
 section {
   padding: 2rem;
 }
-
-$pink: #dd2d4a;
-$orange: #ec7d10;
-$green: #04f06a;
-$yellow: #ffbc0a;
-$purple: #c200fb;
-$black: #07070a;
-$white: #fff;
