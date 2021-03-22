@@ -19,11 +19,14 @@ export default {};
 
 footer {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   padding: 0.75rem 1rem;
 
   color: $white;
+  text-align: center;
 
   background: $black;
 
@@ -38,6 +41,11 @@ footer {
   a,
   a:visited {
     color: $white;
+  }
+
+  @media (min-width: 840px) {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 </style>
