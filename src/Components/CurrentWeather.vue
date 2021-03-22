@@ -105,9 +105,13 @@ export default {
 @import '../assets/styles/styles.scss';
 
 .current {
-  width: 35%;
+  // width: 100%;
 
   margin: 0 auto;
+
+  @media (min-width: 767px) {
+    width: 35%;
+  }
 }
 
 .card {

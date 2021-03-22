@@ -24,6 +24,9 @@ footer {
 
   border-image-source: linear-gradient(to left, $pink, $teal, $purple);
   border-top: 10px solid;
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
   border-image-slice: 1;
   border-width: 0.5rem;
 
