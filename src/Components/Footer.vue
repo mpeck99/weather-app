@@ -26,5 +26,10 @@ footer {
   border-top: 10px solid;
   border-image-slice: 1;
   border-width: 0.5rem;
+
+  a,
+  a:visited {
+    color: $white;
+  }
 }
 </style>
