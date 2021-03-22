@@ -1,6 +1,6 @@
 <template>
   <section aria-label="Weather data" class="current">
-    <div class="card">
+    <div class="card" :class="isVisible ? 'visible' : 'hidden'">
       <div class="card-header">
         <h2>{{ this.location }}</h2>
         <p>{{ this.day }} {{ this.date }}</p>
@@ -45,7 +45,8 @@ export default {
       sunrise: '',
       sunset: '',
       sunriseIcon: '',
-      sunsetIcon: ''
+      sunsetIcon: '',
+      isVisible: false
     };
   },
   watch: {
@@ -76,6 +77,7 @@ export default {
             String.fromCharCode(176);
           this.sunriseIcon = require('../assets/icons/icn-sunrise.svg');
           this.sunsetIcon = require('../assets/icons/icn-sunset.svg');
+          this.isVisible = true;
         }
       }
     }
@@ -123,6 +125,14 @@ export default {
   background-clip: padding-box;
   border: solid $border transparent;
   border-radius: 1em;
+
+  &.visible {
+    display: block;
+  }
+
+  &.hidden {
+    display: none;
+  }
 
   &:before {
     content: '';
