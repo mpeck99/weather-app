@@ -125,6 +125,8 @@ export default {
     left: 0;
     bottom: -2rem;
 
+    z-index: 1;
+
     clip-path: polygon(
       100% 0%,
       0% 0%,
