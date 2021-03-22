@@ -110,7 +110,7 @@ export default {
 
   position: relative;
 
-  background: linear-gradient(100deg, $pink 0%, $teal, $purple 100%);
+  background: linear-gradient(115deg, $pink 0%, $teal, $purple 100%);
   @media (min-width: 767px) {
     min-height: 15rem;
   }
