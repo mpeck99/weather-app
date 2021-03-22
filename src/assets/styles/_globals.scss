@@ -9,6 +9,7 @@ html {
   margin: 0;
 
   font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
 }
 
 main {
@@ -38,4 +39,9 @@ h2 {
 
 section {
   padding: 2rem;
+}
+
+input,
+select {
+  font-size: 100%;
 }
