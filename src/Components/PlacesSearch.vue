@@ -303,7 +303,7 @@ h1 {
     @media (min-width: 767px) {
       width: 25rem;
 
-      border-right: 2px $purple solid;
+      border-right: 2px $teal solid;
     }
   }
   select {
