@@ -110,15 +110,7 @@ export default {
 
   position: relative;
 
-  background: linear-gradient(
-    to right,
-    $pink,
-    $orange,
-    $yellow,
-    $green,
-    $purple
-  );
-
+  background: linear-gradient(100deg, $pink 0%, $teal, $purple 100%);
   @media (min-width: 767px) {
     min-height: 15rem;
   }
@@ -337,7 +329,7 @@ button {
   font-size: 1rem;
   color: $white;
 
-  background-color: $pink;
+  background-color: $black;
   border-radius: 0.25rem;
   border: 0;
 
@@ -346,6 +338,12 @@ button {
 
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: darken($black, 2%);
+    cursor: pointer;
   }
 }
 </style>
