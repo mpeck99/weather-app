@@ -62,10 +62,7 @@ export default {
           });
           this.location = weather.location;
           this.date = new Date().toLocaleDateString();
-          this.icon =
-            'http://openweathermap.org/img/wn/' +
-            weather.current.weather[0].icon +
-            '.png';
+
           this.description = weather.current.weather[0].description;
 
           this.time = 'As of ' + this.formatTime(weather.current.dt);
@@ -78,6 +75,7 @@ export default {
           this.sunriseIcon = require('../assets/icons/icn-sunrise.svg');
           this.sunsetIcon = require('../assets/icons/icn-sunset.svg');
           this.isVisible = true;
+          this.swapIcon(weather.current.weather[0].icon);
         }
       }
     }
@@ -96,6 +94,37 @@ export default {
         .replace('PM', 'pm');
 
       return newTime;
+    },
+    swapIcon(icn) {
+      if (icn == '01d' || icn == '01n') {
+        this.icon = require('../assets/icons/icn-sunny.svg');
+      }
+      if (
+        icn == '02d' ||
+        icn == '02n' ||
+        icn == '04d' ||
+        icn == '04n' ||
+        icn == '03d' ||
+        icn == '03n'
+      ) {
+        this.icon = require('../assets/icons/icn-partly-cloudy.svg');
+      }
+
+      if (icn == '09d' || icn == '09n') {
+        this.icon = require('../assets/icons/icn-shower.svg');
+      }
+      if (icn == '10d' || icn == '10n') {
+        this.icon = require('../assets/icons/icn-rain.svg');
+      }
+      if (icn == '11d' || icn == '11n') {
+        this.icon = require('../assets/icons/icn-storms.svg');
+      }
+      if (icn == '13d' || icn == '13n') {
+        this.icon = require('../assets/icons/icn-snow.svg');
+      }
+      if (icn == '50d' || icn == '50n') {
+        this.icon = require('../assets/icons/icn-hazy.svg');
+      }
     }
   }
 };
@@ -183,7 +212,7 @@ export default {
       grid-row: 1 / 2;
 
       font-weight: 700;
-      font-size: 3rem;
+      font-size: 4.5rem;
 
       &.temp--feels {
         grid-column: 2 / 3;
@@ -207,7 +236,7 @@ export default {
     }
 
     img {
-      width: 6rem;
+      width: 5rem;
       height: auto;
 
       grid-column: 2 / 3;
@@ -219,6 +248,8 @@ export default {
       margin: 0;
 
       font-size: 0.9rem;
+
+      text-transform: capitalize;
     }
   }
   .card-footer {
@@ -234,7 +265,7 @@ export default {
       flex-direction: column;
 
       img {
-        width: 3.5rem;
+        width: 1.5rem;
         height: auto;
       }
 

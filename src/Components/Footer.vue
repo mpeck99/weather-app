@@ -2,6 +2,11 @@
   <footer>
     <p>Morgan Peck - Weather App @{{ new Date().getFullYear() }}</p>
     <p>Built with <a href="https://v3.vuejs.org/">Vue 3</a></p>
+    <p>
+      Icons made by
+      <a href="" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from
+      <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+    </p>
   </footer>
 </template>
 
