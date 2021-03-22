@@ -51,7 +51,9 @@ export default {
         !this.city == null
       ) {
         fetch(
-          `${this.url}weather?q=${this.city},${this.selectedState},US&appid=${this.apiKey}&units=imperial`
+          `${this.url}weather?q=${this.city.trim()},${
+            this.selectedState
+          },US&appid=${this.apiKey}&units=imperial`
         )
           .then((res) => {
             if (!res.ok) {
