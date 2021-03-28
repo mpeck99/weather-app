@@ -1,9 +1,10 @@
 <template>
   <section aria-label="Weather data" class="current">
+    <h2>{{ this.location }}</h2>
     <div class="card" :class="isVisible ? 'visible' : 'hidden'">
       <div class="card-header">
-        <h2>{{ this.location }}</h2>
-        <p>{{ this.day }} {{ this.date }}</p>
+        <h3>{{ this.day }}</h3>
+        <p>{{ this.date }}</p>
         <p>{{ this.time }}</p>
       </div>
       <div class="card-body">
@@ -176,8 +177,7 @@ export default {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 
-    h2 {
-      text-transform: capitalize;
+    h3 {
       margin: 0;
     }
 
@@ -268,5 +268,11 @@ export default {
       }
     }
   }
+}
+
+h2 {
+  margin-top: 0;
+
+  text-transform: capitalize;
 }
 </style>
