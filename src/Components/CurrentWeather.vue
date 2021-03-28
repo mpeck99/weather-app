@@ -133,16 +133,6 @@ export default {
 <style lang="scss">
 @import '../assets/styles/styles.scss';
 
-.current {
-  // width: 100%;
-
-  margin: 0 auto;
-
-  @media (min-width: 767px) {
-    width: 35%;
-  }
-}
-
 .card {
   display: grid;
   grid-template-columns: auto 1fr;
