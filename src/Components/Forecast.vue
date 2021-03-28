@@ -11,6 +11,9 @@
             }}
           </h3>
           <p>{{ new Date(day.dt * 1000).toLocaleDateString() }}</p>
+          <p class="temp">
+            {{ Math.round(day.temp.day) + String.fromCharCode(176) }}
+          </p>
           <img :src="day.weather[0].icon" :alt="day.weather[0].description" />
           <p>{{ Math.round(day.pop * 100) }}%</p>
         </li>
@@ -187,12 +190,18 @@ export default {
     h3 {
       margin: 0;
     }
+
     p {
       margin: 0 0 0.5rem 0;
     }
 
     img {
       width: 3rem;
+    }
+
+    .temp {
+      font-size: 2.5rem;
+      font-weight: 700;
     }
   }
 }
