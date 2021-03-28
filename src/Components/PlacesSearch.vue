@@ -90,7 +90,8 @@ export default {
             this.location = this.city + ', ' + this.selectedState;
             this.$emit('data', {
               current: this.currentWeather,
-              location: this.location
+              location: this.location, 
+              forecast: this.weekForecast
             });
           });
       }
