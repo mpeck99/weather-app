@@ -1,7 +1,10 @@
 <template>
   <main>
     <search @data="weather" />
-    <current :data="data" :key="data" />
+    <div class="wrapper">
+      <current :data="data" :key="data" />
+      <forecast :data="data" :key="data" />
+    </div>
   </main>
   <foot />
 </template>
@@ -10,6 +13,7 @@
 import Search from '@/Components/PlacesSearch';
 import Current from '@/Components/CurrentWeather';
 import Foot from '@/Components/Footer';
+import Forecast from '@/Components/Forecast';
 
 export default {
   name: 'App',
@@ -17,6 +21,7 @@ export default {
   components: {
     Search,
     Current,
+    Forecast,
     Foot
   },
   data() {
@@ -37,4 +42,16 @@ export default {
 
 <style lang="scss">
 @import './assets/styles/styles.scss';
+
+.wrapper {
+  max-width: 75%;
+
+  margin: 0 auto;
+
+  section {
+    width: 100%;
+
+    padding: 2rem 0;
+  }
+}
 </style>
