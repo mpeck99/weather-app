@@ -106,7 +106,7 @@ export default {
 <style lang="scss">
 @import '../assets/styles/styles.scss';
 .bg-gradient {
-  min-height: 24rem;
+  min-height: 25rem;
 
   display: flex;
   flex-direction: column;
@@ -118,7 +118,9 @@ export default {
 
   background: linear-gradient(115deg, $pink 0%, $teal, $purple 100%);
   @media (min-width: 767px) {
-    min-height: 15rem;
+    min-height: 18rem;
+
+    padding-top: 4rem;
   }
 
   &:after {
