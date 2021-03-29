@@ -464,6 +464,8 @@ h2 {
 
     padding: 1rem;
 
+    word-wrap: break-word;
+
     &.open {
       display: block;
     }
