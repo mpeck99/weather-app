@@ -10,7 +10,7 @@
       <div class="alert-header">
         <button @click="toggleAccordion" :data-open="'alert' + i">
           <img :src="this.alertIcon" alt="weather alert" />
-          <h6>{{ alert.event }}</h6>
+          <span>{{ alert.event }}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="52"
@@ -418,15 +418,21 @@ h2 {
         grid-row: 1 / 2;
 
         margin-right: 0.25rem;
+
+        pointer-events: none;
       }
 
-      h6 {
+      span {
         grid-column: 2 /3;
         grid-row: 1 / 2;
 
         margin: 0;
 
         color: $black;
+        font-weight: 700;
+        font-size: 1.25rem;
+
+        pointer-events: none;
       }
 
       svg {
@@ -436,6 +442,8 @@ h2 {
         grid-row: 1 / 2;
 
         stroke: $black;
+
+        pointer-events: none;
       }
 
       &:hover {
