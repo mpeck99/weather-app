@@ -55,7 +55,14 @@ export default {
             }
             if (
               weather.forecast[i].weather[0].icon == '02d' ||
-              weather.forecast[i].weather[0].icon == '02n' ||
+              weather.forecast[i].weather[0].icon == '02n'
+            ) {
+              weather.forecast[
+                i
+              ].weather[0].icon = require('../assets/icons/icn-partly-cloudy.svg');
+            }
+
+            if (
               weather.forecast[i].weather[0].icon == '04d' ||
               weather.forecast[i].weather[0].icon == '04n' ||
               weather.forecast[i].weather[0].icon == '03d' ||
@@ -63,7 +70,7 @@ export default {
             ) {
               weather.forecast[
                 i
-              ].weather[0].icon = require('../assets/icons/icn-partly-cloudy.svg');
+              ].weather[0].icon = require('../assets/icons/icn-cloudy.svg');
             }
 
             if (
