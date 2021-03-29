@@ -293,17 +293,20 @@ export default {
 
     ul {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       justify-content: space-around;
       list-style-type: none;
 
       padding-left: 0;
+      margin-top: 2rem;
 
       li {
         display: grid;
         grid-template-rows: 2rem 1fr;
-        grid-template-columns: 1fr;
+        grid-template-columns: 4.5rem;
         justify-items: center;
+
+        margin: 1rem;
 
         img {
           width: 2rem;
@@ -323,10 +326,6 @@ export default {
             width: 1rem;
           }
         }
-      }
-
-      @media (min-width: 500px) {
-        flex-direction: row;
       }
     }
   }
