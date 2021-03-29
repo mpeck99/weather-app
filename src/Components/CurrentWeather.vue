@@ -7,7 +7,7 @@
       v-for="alert in alerts"
       :key="alert.sender_name"
     >
-      <div :class="['alert-header', isOpen ? 'open' : 'close']">
+      <div class="alert-header">
         <button @click="toggleAccordion">
           <img :src="this.alertIcon" alt="weather alert" />
           <h6>{{ alert.event }}</h6>
@@ -27,11 +27,11 @@
           </svg>
         </button>
       </div>
-      <div class="alert-body" :class="isOpen ? 'open' : 'close'">
+      <div class="alert-body">
         <p>{{ alert.description }}</p>
       </div>
     </div>
-    <div class="card" :class="isVisible ? 'visible' : 'hidden'">
+    <div :class="['card', isVisible ? 'visible' : 'hidden']">
       <div class="card-header">
         <h3>{{ this.day }}</h3>
         <p>{{ this.date }}</p>
@@ -211,11 +211,17 @@ export default {
         this.icon = require('../assets/icons/icn-hazy.svg');
       }
     },
-    toggleAccordion() {
-      if (this.isOpen == true) {
-        this.isOpen = false;
+    toggleAccordion(event) {
+      let button = event.target;
+
+      if (button.parentElement.classList.contains('open')) {
+        button.parentElement.classList.remove('open');
+        if (button.parentElement.nextSibling.classList.contains('open')) {
+          button.parentElement.nextSibling.classList.remove('open');
+        }
       } else {
-        this.isOpen = true;
+        button.parentElement.classList.add('open');
+        button.parentElement.nextSibling.classList.add('open');
       }
     }
   }
@@ -443,11 +449,9 @@ h2 {
   }
 
   .alert-body {
+    display: none;
     &.open {
       display: block;
-    }
-    &.close {
-      display: none;
     }
   }
 }
