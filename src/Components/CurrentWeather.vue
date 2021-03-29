@@ -14,14 +14,37 @@
         <p class="description">{{ this.description }}</p>
       </div>
       <div class="card-footer">
-        <span>
-          <img :src="this.sunriseIcon" />
-          <p>{{ this.sunrise }}</p>
-        </span>
-        <span>
-          <img :src="this.sunsetIcon" />
-          <p>{{ this.sunset }}</p>
-        </span>
+        <ul>
+          <li>
+            <img :src="this.sunriseIcon" />
+            <span>{{ this.sunrise }}</span>
+          </li>
+          <li>
+            <img :src="this.sunsetIcon" />
+            <span>{{ this.sunset }}</span>
+          </li>
+          <li>
+            <img :src="this.humidityIcon" />
+            <span>{{ this.humidity }}</span>
+          </li>
+          <li>
+            <img :src="this.dewIcon" />
+            <span>{{ this.dew }}</span>
+          </li>
+          <li>
+            <img :src="this.windyIcon" />
+            <span
+              >{{ this.windSpeed }}
+              <img
+                :src="this.windDirectionIcon"
+                :alt="this.windDirection"
+                :style="styles"
+              />
+            </span>
+          </li>
+        </ul>
+
+        <span> </span>
       </div>
     </div>
   </section>
@@ -47,8 +70,26 @@ export default {
       sunset: '',
       sunriseIcon: '',
       sunsetIcon: '',
-      isVisible: false
+      isVisible: false,
+      dewIcon: '',
+      windyIcon: '',
+      alertIcon: '',
+      humidityIcon: '',
+      humidity: '',
+      dewPoint: '',
+      windSpeed: '',
+      windDirection: '',
+      windDirectionIcon: '',
+      alertName: '',
+      alertDescrip: ''
     };
+  },
+  computed: {
+    styles: function () {
+      return {
+        transform: 'rotate(' + (this.windDirection - 227) + 'deg)'
+      };
+    }
   },
   watch: {
     data: {
@@ -73,9 +114,20 @@ export default {
             'Feels like ' +
             Math.round(weather.current.feels_like) +
             String.fromCharCode(176);
+
+          this.humidity = weather.current.humidity + '%';
+          this.dew =
+            Math.round(weather.current.dew_point) + String.fromCharCode(176);
+          this.windDirectionIcon = require('../assets/icons/icn-direction.svg');
           this.sunriseIcon = require('../assets/icons/icn-sunrise.svg');
           this.sunsetIcon = require('../assets/icons/icn-sunset.svg');
+          this.humidityIcon = require('../assets/icons/icn-humidity.svg');
+          this.windyIcon = require('../assets/icons/icn-windy.svg');
+          this.dewIcon = require('../assets/icons/icn-dew.svg');
+          this.alertIcon = require('../assets/icons/icn-alert.svg');
           this.isVisible = true;
+          this.windSpeed = Math.round(weather.current.wind_speed) + ' mph';
+          this.windDirection = weather.current.wind_deg;
           this.swapIcon(weather.current.weather[0].icon);
         }
       }
@@ -100,15 +152,11 @@ export default {
       if (icn == '01d' || icn == '01n') {
         this.icon = require('../assets/icons/icn-sunny.svg');
       }
-      if (
-        icn == '02d' ||
-        icn == '02n' ||
-        icn == '04d' ||
-        icn == '04n' ||
-        icn == '03d' ||
-        icn == '03n'
-      ) {
+      if (icn == '02d' || icn == '02n') {
         this.icon = require('../assets/icons/icn-partly-cloudy.svg');
+      }
+      if (icn == '04d' || icn == '04n' || icn == '03d' || icn == '03n') {
+        this.icon = require('../assets/icons/icn-cloudy.svg');
       }
 
       if (icn == '09d' || icn == '09n') {
@@ -190,12 +238,13 @@ export default {
 
   .card-body {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
-
     align-items: center;
     grid-column: 1 / 3;
     grid-row: 2 / 3;
+
+    margin-bottom: 1rem;
 
     .temp {
       grid-column: 1 / 2;
@@ -205,9 +254,9 @@ export default {
       font-size: 4.5rem;
 
       &.temp--feels {
-        grid-column: 2 / 3;
+        grid-column: 1 / 2;
         grid-row: 2 / 3;
-        justify-self: flex-end;
+        justify-self: flex-start;
 
         font-size: 0.9rem;
         font-weight: 400;
@@ -215,14 +264,10 @@ export default {
     }
 
     .description {
-      grid-column: 1 / 2;
-      grid-row: 2 / 3;
-    }
-
-    .temp--feels {
       grid-column: 2 / 3;
       grid-row: 2 / 3;
-      justify-self: flex-end;
+
+      justify-self: center;
     }
 
     img {
@@ -243,28 +288,45 @@ export default {
     }
   }
   .card-footer {
-    display: flex;
-
     grid-column: 1 / 4;
     grid-row: 3 / 4;
 
-    span {
+    ul {
       display: flex;
-      justify-content: flex-end;
-      align-items: center;
       flex-direction: column;
+      justify-content: space-around;
+      list-style-type: none;
 
-      img {
-        width: 1.5rem;
-        height: auto;
+      padding-left: 0;
+
+      li {
+        display: grid;
+        grid-template-rows: 2rem 1fr;
+        grid-template-columns: 1fr;
+        justify-items: center;
+
+        img {
+          width: 2rem;
+          height: auto;
+
+          grid-row: 1 / 2;
+          grid-column: 1 / 2;
+        }
+
+        span {
+          grid-row: 2 / 3;
+          grid-column: 1 / 2;
+
+          margin: 1rem 0;
+
+          img {
+            width: 1rem;
+          }
+        }
       }
 
-      p {
-        margin: 0;
-      }
-
-      &:nth-of-type(1) {
-        margin-right: 2rem;
+      @media (min-width: 500px) {
+        flex-direction: row;
       }
     }
   }
