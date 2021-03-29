@@ -217,9 +217,11 @@ export default {
 
       if (button.classList.contains('open')) {
         button.classList.remove('open');
+        button.parentElement.classList.remove('open');
         document.getElementById(dataAtt).classList.remove('open');
       } else {
         button.classList.add('open');
+        button.parentElement.classList.add('open');
         document.getElementById(dataAtt).classList.add('open');
       }
     }
