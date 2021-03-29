@@ -408,6 +408,8 @@ h2 {
       align-items: center;
       justify-items: flex-end;
 
+      padding-left: 0;
+
       background: transparent;
       border: none;
       border-radius: 1rem;
@@ -459,6 +461,9 @@ h2 {
 
   .alert-body {
     display: none;
+
+    padding: 1rem;
+
     &.open {
       display: block;
     }
