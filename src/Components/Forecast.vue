@@ -164,7 +164,7 @@ export default {
   @media (min-width: 1000px) {
     display: flex;
     justify-content: space-around;
-
+    align-items: center;
     flex-wrap: wrap;
   }
 
@@ -174,12 +174,13 @@ export default {
     justify-content: center;
     align-items: center;
 
+    flex-grow: 1;
+
     padding: 1rem 0;
 
     border-bottom: solid 1px $ltgrey;
 
     @media (min-width: 1000px) {
-      padding-right: 1rem;
       padding-bottom: 0;
 
       border-right: solid 1px $ltgrey;
@@ -188,7 +189,6 @@ export default {
 
     &:last-of-type {
       padding-bottom: 0;
-      padding-right: 0;
 
       border-right: 0;
       border-bottom: 0;
