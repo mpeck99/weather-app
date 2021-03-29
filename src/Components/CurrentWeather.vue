@@ -1,6 +1,36 @@
 <template>
   <section aria-label="Weather data" class="current">
     <h2>{{ this.location }}</h2>
+    <div
+      class="alert"
+      :class="hasAlert ? 'visible' : 'hidden'"
+      v-for="alert in alerts"
+      :key="alert.sender_name"
+    >
+      <div :class="['alert-header', isOpen ? 'open' : 'close']">
+        <button @click="toggleAccordion">
+          <img :src="this.alertIcon" alt="weather alert" />
+          <h6>{{ alert.event }}</h6>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="52"
+            height="52"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#1f2833"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-chevron-down"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+      <div class="alert-body" :class="isOpen ? 'open' : 'close'">
+        <p>{{ alert.description }}</p>
+      </div>
+    </div>
     <div class="card" :class="isVisible ? 'visible' : 'hidden'">
       <div class="card-header">
         <h3>{{ this.day }}</h3>
@@ -80,14 +110,15 @@ export default {
       windSpeed: '',
       windDirection: '',
       windDirectionIcon: '',
-      alertName: '',
-      alertDescrip: ''
+      alerts: [],
+      hasAlert: false,
+      isOpen: false
     };
   },
   computed: {
     styles: function () {
       return {
-        transform: 'rotate(' + (this.windDirection - 227) + 'deg)'
+        transform: 'rotate(' + (this.windDirection - 180) + 'deg)'
       };
     }
   },
@@ -124,11 +155,16 @@ export default {
           this.humidityIcon = require('../assets/icons/icn-humidity.svg');
           this.windyIcon = require('../assets/icons/icn-windy.svg');
           this.dewIcon = require('../assets/icons/icn-dew.svg');
-          this.alertIcon = require('../assets/icons/icn-alert.svg');
           this.isVisible = true;
           this.windSpeed = Math.round(weather.current.wind_speed) + ' mph';
           this.windDirection = weather.current.wind_deg;
           this.swapIcon(weather.current.weather[0].icon);
+
+          if (weather.alerts != null || weather.alerts != 'undefined') {
+            this.hasAlert = true;
+            this.alerts = weather.alerts;
+            this.alertIcon = require('../assets/icons/icn-alert.svg');
+          }
         }
       }
     }
@@ -174,6 +210,13 @@ export default {
       if (icn == '50d' || icn == '50n') {
         this.icon = require('../assets/icons/icn-hazy.svg');
       }
+    },
+    toggleAccordion() {
+      if (this.isOpen == true) {
+        this.isOpen = false;
+      } else {
+        this.isOpen = true;
+      }
     }
   }
 };
@@ -196,7 +239,7 @@ export default {
   background: #fff;
   background-clip: padding-box;
   border: solid $border transparent;
-  border-radius: 1em;
+  border-radius: 1rem;
 
   &.visible {
     display: block;
@@ -343,5 +386,69 @@ h2 {
   margin-top: 0;
 
   text-transform: capitalize;
+}
+
+.alert {
+  .alert-header {
+    margin-bottom: 1rem;
+
+    button {
+      width: 100%;
+
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      grid-template-rows: 100%;
+      align-items: center;
+      justify-items: flex-end;
+
+      background: transparent;
+      border: none;
+      border-radius: 1rem;
+
+      img {
+        width: 1.5rem;
+        grid-column: 1 /2;
+        grid-row: 1 / 2;
+
+        margin-right: 0.25rem;
+      }
+
+      h6 {
+        grid-column: 2 /3;
+        grid-row: 1 / 2;
+
+        margin: 0;
+
+        color: $black;
+      }
+
+      svg {
+        width: 1.5rem;
+
+        grid-column: 3 /4;
+        grid-row: 1 / 2;
+
+        stroke: $black;
+      }
+
+      &:hover {
+        background: darken($white, 2%);
+      }
+    }
+    &.open {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .alert-body {
+    &.open {
+      display: block;
+    }
+    &.close {
+      display: none;
+    }
+  }
 }
 </style>

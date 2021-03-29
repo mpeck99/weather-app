@@ -32,7 +32,8 @@ export default {
       weekForecast: [],
       coordinates: [],
       error: null,
-      city: ''
+      city: '',
+      alerts: []
     };
   },
   methods: {
@@ -88,10 +89,12 @@ export default {
             this.weekForecast = data.daily;
             this.currentWeather = data.current;
             this.location = this.city + ', ' + this.selectedState;
+            this.alerts = data.alerts;
             this.$emit('data', {
               current: this.currentWeather,
-              location: this.location, 
-              forecast: this.weekForecast
+              location: this.location,
+              forecast: this.weekForecast,
+              alerts: this.alerts
             });
           });
       }
