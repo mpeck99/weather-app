@@ -4,11 +4,11 @@
     <div
       class="alert"
       :class="hasAlert ? 'visible' : 'hidden'"
-      v-for="alert in alerts"
-      :key="alert.sender_name"
+      v-for="(alert, i) in alerts"
+      :key="i"
     >
       <div class="alert-header">
-        <button @click="toggleAccordion">
+        <button @click="toggleAccordion" :data-open="'alert' + i">
           <img :src="this.alertIcon" alt="weather alert" />
           <h6>{{ alert.event }}</h6>
           <svg
@@ -27,7 +27,7 @@
           </svg>
         </button>
       </div>
-      <div class="alert-body">
+      <div class="alert-body" :id="'alert' + i">
         <p>{{ alert.description }}</p>
       </div>
     </div>
@@ -213,17 +213,14 @@ export default {
     },
     toggleAccordion(event) {
       let button = event.target,
-        buttonParent = button.parentElement;
+        dataAtt = button.getAttribute('data-open');
 
       if (button.classList.contains('open')) {
         button.classList.remove('open');
-        if (buttonParent.nextSibling.classList.contains('open')) {
-          buttonParent.nextSibling.classList.remove('open');
-        }
+        document.getElementById(dataAtt).classList.remove('open');
       } else {
         button.classList.add('open');
-
-        buttonParent.nextSibling.classList.add('open');
+        document.getElementById(dataAtt).classList.add('open');
       }
     }
   }
