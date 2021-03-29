@@ -225,6 +225,8 @@ export default {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 
+    padding: 0 2rem;
+
     h3 {
       margin: 0;
     }
@@ -245,6 +247,7 @@ export default {
     grid-row: 2 / 3;
 
     margin-bottom: 1rem;
+    padding: 0 2rem;
 
     .temp {
       grid-column: 1 / 2;
@@ -294,7 +297,8 @@ export default {
     ul {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: space-between;
+      align-items: center;
       list-style-type: none;
 
       padding-left: 0;
@@ -302,14 +306,14 @@ export default {
 
       li {
         display: grid;
-        grid-template-rows: 3rem 1fr;
-        grid-template-columns: 5rem;
+        grid-template-rows: 2rem 1fr;
+        grid-template-columns: 6rem;
         justify-items: center;
 
-        margin: 1rem;
+        margin: 1rem auto;
 
         img {
-          width: 2.75rem;
+          width: 2rem;
           height: auto;
 
           grid-row: 1 / 2;
@@ -326,6 +330,10 @@ export default {
             width: 1rem;
           }
         }
+      }
+
+      @media (min-width: 500px) {
+        flex-direction: row;
       }
     }
   }
