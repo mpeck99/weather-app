@@ -309,7 +309,7 @@ export default {
         margin: 1rem;
 
         img {
-          width: 2rem;
+          width: 2.75rem;
           height: auto;
 
           grid-row: 1 / 2;
