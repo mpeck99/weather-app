@@ -302,8 +302,8 @@ export default {
 
       li {
         display: grid;
-        grid-template-rows: 2rem 1fr;
-        grid-template-columns: 4.5rem;
+        grid-template-rows: 3rem 1fr;
+        grid-template-columns: 5rem;
         justify-items: center;
 
         margin: 1rem;
