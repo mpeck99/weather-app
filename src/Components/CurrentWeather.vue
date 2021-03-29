@@ -212,16 +212,18 @@ export default {
       }
     },
     toggleAccordion(event) {
-      let button = event.target;
+      let button = event.target,
+        buttonParent = button.parentElement;
 
-      if (button.parentElement.classList.contains('open')) {
-        button.parentElement.classList.remove('open');
-        if (button.parentElement.nextSibling.classList.contains('open')) {
-          button.parentElement.nextSibling.classList.remove('open');
+      if (button.classList.contains('open')) {
+        button.classList.remove('open');
+        if (buttonParent.nextSibling.classList.contains('open')) {
+          buttonParent.nextSibling.classList.remove('open');
         }
       } else {
-        button.parentElement.classList.add('open');
-        button.parentElement.nextSibling.classList.add('open');
+        button.classList.add('open');
+
+        buttonParent.nextSibling.classList.add('open');
       }
     }
   }
