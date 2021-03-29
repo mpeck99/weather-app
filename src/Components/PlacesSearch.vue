@@ -106,7 +106,7 @@ export default {
 <style lang="scss">
 @import '../assets/styles/styles.scss';
 .bg-gradient {
-  min-height: 22rem;
+  min-height: 24rem;
 
   display: flex;
   flex-direction: column;
