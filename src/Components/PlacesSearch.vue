@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      apiKey: '4de4a8d80078d333a4a72f1c11d87820',
+      apiKey: process.env.VUE_APP_api,
       url: 'https://api.openweathermap.org/data/2.5/',
       currentWeather: [],
       weekForecast: [],
