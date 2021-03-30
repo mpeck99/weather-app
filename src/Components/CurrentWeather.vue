@@ -396,9 +396,40 @@ h2 {
 }
 
 .alert {
-  .alert-header {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
 
+  position: relative;
+
+  $border: 2px;
+
+  background: $white;
+  background-clip: padding-box;
+  border: solid $border transparent;
+  border-radius: 1rem;
+
+  &:before {
+    content: '';
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: -1;
+    margin: -$border;
+    border-radius: inherit;
+    background: linear-gradient(130deg, $pink, $teal, $purple);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: -3px;
+  }
+
+  .alert-header {
     button {
       width: 100%;
 
@@ -413,6 +444,8 @@ h2 {
       background: transparent;
       border: none;
       border-radius: 1rem;
+
+      color: $black;
 
       img {
         width: 1.5rem;
@@ -430,8 +463,7 @@ h2 {
 
         margin: 0;
 
-        color: $black;
-        font-weight: 700;
+        font-weight: 400;
         font-size: 1.25rem;
 
         pointer-events: none;
@@ -446,10 +478,6 @@ h2 {
         stroke: $black;
 
         pointer-events: none;
-      }
-
-      &:hover {
-        background: darken($white, 2%);
       }
     }
     &.open {

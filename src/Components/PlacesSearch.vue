@@ -352,7 +352,9 @@ button {
 
   &:hover,
   &:focus {
-    background-color: darken($black, 2%);
+    background-color: $coral;
+    color: $black;
+
     cursor: pointer;
   }
 }
